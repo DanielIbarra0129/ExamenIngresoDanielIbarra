@@ -2,7 +2,9 @@ package co.com.ceiba.mobile.pruebadeingreso.view;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -20,11 +22,12 @@ import co.com.ceiba.mobile.pruebadeingreso.MVP.Presenter.PresenterUser;
 import co.com.ceiba.mobile.pruebadeingreso.MVP.Presenter.PresenterUserImpl;
 import co.com.ceiba.mobile.pruebadeingreso.MVP.UserSelected;
 import co.com.ceiba.mobile.pruebadeingreso.MVP.View.Adaptaders.UserAdapter;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.View.ViewPost;
 import co.com.ceiba.mobile.pruebadeingreso.MVP.View.ViewUser;
 import co.com.ceiba.mobile.pruebadeingreso.R;
 import co.com.ceiba.mobile.pruebadeingreso.Tools;
 
-public class MainActivity extends Activity implements ViewUser {
+public class MainActivity extends AppCompatActivity implements ViewUser, ViewPost {
 
     ProgressDialog progressDialog;
     PresenterUser presenterUser;
@@ -65,11 +68,14 @@ public class MainActivity extends Activity implements ViewUser {
         });
 
         getUser();
+        getAllPost();
     }
 
     public UserSelected interfaceUser (){
         return user -> {
-            System.out.println("msdvmsdvsdv");
+            Intent intent = new Intent(getApplicationContext(), PostActivity.class);
+            intent.putExtra("user", user);
+            startActivity(intent);
         };
     }
 
@@ -113,5 +119,15 @@ public class MainActivity extends Activity implements ViewUser {
     @Override
     public void cancelDialogCargando() {
         if (progressDialog.isShowing()) progressDialog.dismiss();
+    }
+
+    @Override
+    public void getPostUserId(String userId) {
+
+    }
+
+    @Override
+    public void getAllPost() {
+        presenterUser.getAllPost();
     }
 }

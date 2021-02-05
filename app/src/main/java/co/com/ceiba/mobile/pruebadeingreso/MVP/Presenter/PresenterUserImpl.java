@@ -46,4 +46,14 @@ public class PresenterUserImpl implements PresenterUser{
     public void cancelarDialogoCargando() {
         viewUser.cancelDialogCargando();
     }
+
+    @Override
+    public void getPostUserId(String userId) {
+
+    }
+
+    @Override
+    public void getAllPost() {
+        repositoryUser.getAllPostWebService();
+    }
 }

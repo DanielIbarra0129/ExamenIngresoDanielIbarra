@@ -102,4 +102,54 @@ public class RepositoryUserImpl implements RepositoryUser {
         }
         return false;
     }
+
+    @Override
+    public void getPostUserIdWebService(String userId) {
+
+    }
+
+    @Override
+    public void getAllPostWebService() {
+
+        if (!verificarConexion()) {
+            presenterUser.showErrorMessageDialog(R.string.informacion, R.string.verifique_conexion);
+            return;
+        }
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        String url = Endpoints.URL_BASE+Endpoints.GET_ALL_POST;
+
+        JsonArrayRequest jsonObjectRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                Log.d("Respuesta servicio POST", response.toString());
+                Gson gson = new GsonBuilder().create();
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Error", error.toString());
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                return params;
+            }
+        };
+        queue.add(jsonObjectRequest);
+
+    }
+
+    @Override
+    public void getPostUserIdFromDatabase(String userId) {
+
+    }
+
+    @Override
+    public void getAllPostFromDatabase() {
+
+    }
 }

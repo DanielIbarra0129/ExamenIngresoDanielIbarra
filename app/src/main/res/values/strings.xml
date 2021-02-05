@@ -11,4 +11,5 @@
     <string name="verifique_conexion">Verifique su conexión a internet</string>
     <string name="sin_información">Sin información</string>
     <string name="consultando_usuarios">Consultando usuarios</string>
+    <string name="error_usuario">Error al importar usuario </string>
 </resources>

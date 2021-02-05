@@ -9,19 +9,18 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import co.com.ceiba.mobile.pruebadeingreso.MVP.Modelo.User;
 import co.com.ceiba.mobile.pruebadeingreso.MVP.UserSelected;
 import co.com.ceiba.mobile.pruebadeingreso.R;
 
-public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
+public class PostAdapter extends RecyclerView.Adapter<PostAdapter.UserHolder> {
 
     List<User> userListOrigin;
     List<User> userListFiltered;
     UserSelected userSelected;
 
-    public UserAdapter(List<User> userListOrigin, UserSelected userSelected) {
+    public PostAdapter(List<User> userListOrigin, UserSelected userSelected) {
         this.userListOrigin = userListOrigin;
         this.userListFiltered= userListOrigin;
         this.userSelected = userSelected;
