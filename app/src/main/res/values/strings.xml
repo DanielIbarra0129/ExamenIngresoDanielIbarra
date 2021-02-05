@@ -7,4 +7,8 @@
     <string name="generic_error">Ha ocurrido un error inesperado</string>
     <string name="accept">Aceptar</string>
     <string name="list_is_empty">List is empty</string>
+    <string name="informacion">Información</string>
+    <string name="verifique_conexion">Verifique su conexión a internet</string>
+    <string name="sin_información">Sin información</string>
+    <string name="consultando_usuarios">Consultando usuarios</string>
 </resources>
