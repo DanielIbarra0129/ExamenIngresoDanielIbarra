@@ -1,20 +1,8 @@
 package co.com.ceiba.mobile.pruebadeingreso.MVP.Modelo;
 
-public interface RepositoryUser {
+public interface RepositoryUser extends RepositoryPost, RepositoryGeneral{
 
-    boolean verificarConexion();
-
-    void getUserFromWebServices();
-
-    void getUserFromDatabase();
-
-    void getPostUserIdWebService(String userId);
-
-    void getAllPostWebService();
-
-    void getPostUserIdFromDatabase(String userId);
-
-    void getAllPostFromDatabase();
+    void getUser();
 
 
 }

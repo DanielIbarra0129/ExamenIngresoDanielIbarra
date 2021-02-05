@@ -1,22 +1,22 @@
 package co.com.ceiba.mobile.pruebadeingreso.view;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import co.com.ceiba.mobile.pruebadeingreso.MVP.Modelo.PostUser;
 import co.com.ceiba.mobile.pruebadeingreso.MVP.Modelo.User;
 import co.com.ceiba.mobile.pruebadeingreso.MVP.Presenter.PresenterUser;
 import co.com.ceiba.mobile.pruebadeingreso.MVP.Presenter.PresenterUserImpl;
@@ -28,6 +28,10 @@ import co.com.ceiba.mobile.pruebadeingreso.R;
 import co.com.ceiba.mobile.pruebadeingreso.Tools;
 
 public class MainActivity extends AppCompatActivity implements ViewUser, ViewPost {
+
+    //eliminar sgte variable
+    public static List<PostUser> POST_USER_ALL = new ArrayList<>();
+    public static List<PostUser> POST_USER_BY_ID = new ArrayList<>();
 
     ProgressDialog progressDialog;
     PresenterUser presenterUser;
@@ -67,8 +71,12 @@ public class MainActivity extends AppCompatActivity implements ViewUser, ViewPos
             }
         });
 
-        getUser();
-        getAllPost();
+        showDialogCargando(R.string.informacion, R.string.consultando_usuarios);
+        new Handler().postDelayed(() -> {
+            getUser();
+            getAllPost();
+        },5000);
+
     }
 
     public UserSelected interfaceUser (){
@@ -87,7 +95,6 @@ public class MainActivity extends AppCompatActivity implements ViewUser, ViewPos
 
     @Override
     public void getUser() {
-        showDialogCargando(R.string.informacion, R.string.consultando_usuarios);
         presenterUser.getUser();
     }
 
@@ -129,5 +136,10 @@ public class MainActivity extends AppCompatActivity implements ViewUser, ViewPos
     @Override
     public void getAllPost() {
         presenterUser.getAllPost();
+    }
+
+    @Override
+    public void showPostByUser(List<PostUser> postUsers) {
+
     }
 }
