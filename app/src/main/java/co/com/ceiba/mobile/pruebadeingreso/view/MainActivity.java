@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements ViewUser, ViewPos
         progressDialog.setCancelable(false);
 
         userAdapter = new UserAdapter(new ArrayList<User>(), interfaceUser());
-        recyclerView=findViewById(R.id.recyclerViewSearchResults);
+        recyclerView = findViewById(R.id.recyclerViewSearchResults);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setAdapter(userAdapter);
         etSearch = findViewById(R.id.editTextSearch);
@@ -71,15 +71,12 @@ public class MainActivity extends AppCompatActivity implements ViewUser, ViewPos
             }
         });
 
-        showDialogCargando(R.string.informacion, R.string.consultando_usuarios);
-        new Handler().postDelayed(() -> {
-            getUser();
-            getAllPost();
-        },5000);
+        getUser();
+        getAllPost();
 
     }
 
-    public UserSelected interfaceUser (){
+    public UserSelected interfaceUser() {
         return user -> {
             Intent intent = new Intent(getApplicationContext(), PostActivity.class);
             intent.putExtra("user", user);
@@ -95,7 +92,11 @@ public class MainActivity extends AppCompatActivity implements ViewUser, ViewPos
 
     @Override
     public void getUser() {
-        presenterUser.getUser();
+        showDialogCargando(R.string.informacion, R.string.consultando_usuarios);
+        new Handler().postDelayed(() -> {
+            presenterUser.getUser();
+        },1000);
+
     }
 
     @Override
@@ -107,12 +108,14 @@ public class MainActivity extends AppCompatActivity implements ViewUser, ViewPos
 
     @Override
     public void showAlertDialogInf(int titulo, int mensaje) {
-        Toast.makeText(getApplicationContext(), getString(titulo)+" : "+getString(mensaje), Toast.LENGTH_SHORT).show();
+        cancelDialogCargando();
+        Toast.makeText(getApplicationContext(), getString(titulo) + " : " + getString(mensaje), Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showAlertDialogInf(int titulo, String mensaje) {
-        Toast.makeText(getApplicationContext(), getString(titulo)+" : "+mensaje, Toast.LENGTH_SHORT).show();
+        cancelDialogCargando();
+        Toast.makeText(getApplicationContext(), getString(titulo) + " : " + mensaje, Toast.LENGTH_SHORT).show();
     }
 
     @Override

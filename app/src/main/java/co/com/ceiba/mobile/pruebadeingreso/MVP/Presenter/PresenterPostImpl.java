@@ -40,6 +40,7 @@ public class PresenterPostImpl implements PresenterPost{
     public void showPostByUserIdDB(List<PostUser> postUserList) {
         if (postUserList.isEmpty()){
             repositoryPostWebService.getPostUserId(userId);
+            repositoryPostWebService.getAllPost();
         } else {
             viewPost.showPostByUser(postUserList);
         }
@@ -52,6 +53,7 @@ public class PresenterPostImpl implements PresenterPost{
     @Override
     public void guardarInfoDatabasePost(List<PostUser> postUserList) {
         Log.d("PresenterPostImpl","guardarInfoDatabasePost");
+        repositoryPostDB.setAllPost(postUserList);
     }
 
     @Override

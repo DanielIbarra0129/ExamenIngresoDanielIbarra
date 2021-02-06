@@ -20,164 +20,67 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import co.com.ceiba.mobile.pruebadeingreso.MVP.Modelo.DAO.database.PostDB;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.Modelo.DAO.database.UserDB;
 import co.com.ceiba.mobile.pruebadeingreso.MVP.Presenter.PresenterUser;
 import co.com.ceiba.mobile.pruebadeingreso.R;
 import co.com.ceiba.mobile.pruebadeingreso.rest.Endpoints;
 
 public class RepositoryUserDatabaseImpl implements RepositoryUser {
 
-    Context context;
-    PresenterUser presenterUser;
+    private Context context;
+    private PresenterUser presenterUser;
+    private UserDB userDB;
+    private PostDB postDB;
 
     public RepositoryUserDatabaseImpl(Context context, PresenterUser presenterUser) {
         this.context = context;
         this.presenterUser = presenterUser;
+        userDB = UserDB.getInstance(context);
+        postDB = PostDB.getInstance(context);
     }
     /**
      * DEVOLVEMOS VALORES NULOS SIMULANDO QUE DB NO TIENE REGISTROS
      * **/
 
     @Override
-    public void getUser() {
-        Log.d("RepositoryUserWebImpl","getUser");
-        if (!verificarConexion()) {
-            presenterUser.showErrorMessageDialog(R.string.informacion, R.string.verifique_conexion);
-            return;
-        }
+    public void getUsers() {
+        Log.d("RepositoryUserDBImpl","getUser");
 
-        final List<User> userList=new ArrayList<>();
+        List<User> userList;
+        userList = userDB.getUser();
+        System.out.println("userList.SIZE -> "+userList.size());
+        presenterUser.showUserDB(userList);
 
-        RequestQueue queue = Volley.newRequestQueue(context);
-        String url = Endpoints.URL_BASE+Endpoints.GET_USERS;
-
-        JsonArrayRequest jsonObjectRequest = new JsonArrayRequest(Request.Method.GET, url, null,
-                response -> {
-            Log.d("Respuesta servicio", response.toString());
-            Gson gson = new GsonBuilder().create();
-
-            if (response.length()==0){
-                presenterUser.showErrorMessageDialog(R.string.informacion, R.string.sin_información);
-                return;
-            }
-
-            for (int i=0; i<response.length();i++){
-                try {
-                    userList.add(gson.fromJson(response.getJSONObject(i).toString(), User.class));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            presenterUser.showUserDB(new ArrayList<>());
-
-                }, error -> {
-            Log.d("Error", error.toString());
-            presenterUser.showErrorMessageDialog(R.string.informacion, R.string.error_servidor);
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                return params;
-            }
-        };
-        queue.add(jsonObjectRequest);
     }
 
     @Override
-    public boolean verificarConexion() {
-        ConnectivityManager con = (ConnectivityManager) context.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = con.getActiveNetworkInfo();
-        if (networkInfo != null && networkInfo.isConnected()) {
-            return true;
+    public void setUser(List<User> userList) {
+        Log.d("RepositoryUserDBImpl","setUser");
+        for (int i=0; i<userList.size(); i++){
+            userDB.setUser(userList.get(i));
         }
-        return false;
     }
 
     @Override
     public void getPostUserId(String userId) {
-        Log.d("RepositoryUserWebImpl","getPostUserId");
-        if (!verificarConexion()) {
-            presenterUser.showErrorMessageDialog(R.string.informacion, R.string.verifique_conexion);
-            return;
-        }
-
-        RequestQueue queue = Volley.newRequestQueue(context);
-        String url = Endpoints.URL_BASE+Endpoints.GET_POST_USER+userId;
-
-        JsonArrayRequest jsonObjectRequest = new JsonArrayRequest(Request.Method.GET, url, null,
-                response -> {
-                    Log.d("Respuesta servicio POST", response.toString());
-                    Gson gson = new GsonBuilder().create();
-
-                    List<PostUser> postUserList = new ArrayList<>();
-
-                    for (int i =0; i<response.length(); i++){
-                        try {
-                            postUserList.add(gson.fromJson(response.getJSONObject(i).toString(), PostUser.class));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    presenterUser.showAllPostDB(new ArrayList<>());
-
-
-
-                }, error -> {
-            Log.d("Error", error.toString());
-            presenterUser.showErrorMessageDialog(R.string.informacion, R.string.error_servidor);
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                return params;
-            }
-        };
-        queue.add(jsonObjectRequest);
+       postDB.getPostById(userId);
     }
 
     @Override
     public void getAllPost() {
-        Log.d("RepositoryUserWebImpl","getAllPost");
-        if (!verificarConexion()) {
-            presenterUser.showErrorMessageDialog(R.string.informacion, R.string.verifique_conexion);
-            return;
+        presenterUser.showAllPostDB(postDB.getPost());
+    }
+
+    @Override
+    public void setAllPost(List<PostUser> listPost) {
+        for (PostUser postUser : listPost){
+            postDB.setPost(postUser);
         }
+    }
 
-        RequestQueue queue = Volley.newRequestQueue(context);
-        String url = Endpoints.URL_BASE+Endpoints.GET_ALL_POST;
-
-        JsonArrayRequest jsonObjectRequest = new JsonArrayRequest(Request.Method.GET, url, null,
-                response -> {
-            Log.d("Respuesta servicio POST", response.toString());
-            Gson gson = new GsonBuilder().create();
-
-            List<PostUser> postUserList = new ArrayList<>();
-
-            for (int i =0; i<response.length(); i++){
-                try {
-                    postUserList.add(gson.fromJson(response.getJSONObject(i).toString(), PostUser.class));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            presenterUser.showAllPostDB(new ArrayList<>());
-
-
-
-                }, error -> {
-            Log.d("Error", error.toString());
-            presenterUser.showErrorMessageDialog(R.string.informacion, R.string.error_servidor);
-        })
-        {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                return params;
-            }
-        };
-        queue.add(jsonObjectRequest);
-
+    @Override
+    public boolean verificarConexion() {
+        return false;
     }
 }

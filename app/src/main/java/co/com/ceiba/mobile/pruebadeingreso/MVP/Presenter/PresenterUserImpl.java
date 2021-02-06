@@ -29,7 +29,7 @@ public class PresenterUserImpl implements PresenterUser {
     @Override
     public void getUser() {
         Log.d("PresenterUserImpl","getUser");
-        repositoryUserDatabase.getUser();
+        repositoryUserDatabase.getUsers();
         //repositoryUserWenService.getUser();
     }
 
@@ -37,7 +37,7 @@ public class PresenterUserImpl implements PresenterUser {
     public void showUserDB(List<User> listUser) {
         Log.d("PresenterUserImpl","showUserDB");
         if (listUser.isEmpty()){
-            repositoryUserWebService.getUser();
+            repositoryUserWebService.getUsers();
         } else {
             viewUser.showUser(listUser);
         }
@@ -84,11 +84,13 @@ public class PresenterUserImpl implements PresenterUser {
     @Override
     public void guardarInfoDatabaseUser(List<User> userList) {
         Log.d("PresenterUserImpl","guardarInfoDatabaseUser");
+        repositoryUserDatabase.setUser(userList);
     }
 
     @Override
     public void guardarInfoDatabasePost(List<PostUser> postUserList) {
         Log.d("PresenterUserImpl","guardarInfoDatabasePost");
+        repositoryUserDatabase.setAllPost(postUserList);
     }
 
     @Override

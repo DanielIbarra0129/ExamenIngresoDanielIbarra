@@ -35,7 +35,7 @@ public class RepositoryUserWebImpl implements RepositoryUser {
     }
 
     @Override
-    public void getUser() {
+    public void getUsers() {
         Log.d("RepositoryUserWebImpl","getUser");
         if (!verificarConexion()) {
             presenterUser.showErrorMessageDialog(R.string.informacion, R.string.verifique_conexion);
@@ -78,6 +78,10 @@ public class RepositoryUserWebImpl implements RepositoryUser {
             }
         };
         queue.add(jsonObjectRequest);
+    }
+
+    @Override
+    public void setUser(List<User> userList) {
     }
 
     @Override
@@ -174,6 +178,11 @@ public class RepositoryUserWebImpl implements RepositoryUser {
             }
         };
         queue.add(jsonObjectRequest);
+
+    }
+
+    @Override
+    public void setAllPost(List<PostUser> listPost) {
 
     }
 }

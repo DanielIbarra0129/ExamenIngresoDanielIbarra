@@ -127,4 +127,9 @@ public class RepositoryPostWebImpl implements RepositoryPost{
         queue.add(jsonObjectRequest);
 
     }
+
+    @Override
+    public void setAllPost(List<PostUser> listPost) {
+
+    }
 }

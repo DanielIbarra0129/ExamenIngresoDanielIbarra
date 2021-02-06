@@ -52,10 +52,7 @@ public class PostActivity extends AppCompatActivity implements ViewPost {
         tvPhone.setText((user.getPhone()!=null) ? user.getPhone() : "");
         tvEmail.setText((user.getEmail()!=null) ? user.getEmail() : "");
 
-        showDialogCargando(R.string.informacion, R.string.consultando_posts);
-        new Handler().postDelayed(() -> {
-            getPostUserId(user.getId());
-        },5000);
+        getPostUserId(user.getId());
 
 
     }
@@ -68,7 +65,10 @@ public class PostActivity extends AppCompatActivity implements ViewPost {
 
     @Override
     public void getPostUserId(String userId) {
-        presenterPost.getPostByUserId(userId);
+        showDialogCargando(R.string.informacion, R.string.consultando_posts);
+        new Handler().postDelayed(() -> {
+            presenterPost.getPostByUserId(userId);
+        },1000);
     }
 
     @Override
@@ -83,11 +83,13 @@ public class PostActivity extends AppCompatActivity implements ViewPost {
 
     @Override
     public void showAlertDialogInf(int titulo, int mensaje) {
+        cancelDialogCargando();
         Toast.makeText(getApplicationContext(), getString(titulo)+" : "+getString(mensaje), Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showAlertDialogInf(int titulo, String mensaje) {
+        cancelDialogCargando();
         Toast.makeText(getApplicationContext(), getString(titulo)+" : "+mensaje, Toast.LENGTH_SHORT).show();
     }
 

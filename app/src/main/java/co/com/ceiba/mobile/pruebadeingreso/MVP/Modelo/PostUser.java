@@ -1,9 +1,16 @@
 package co.com.ceiba.mobile.pruebadeingreso.MVP.Modelo;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
-public class PostUser {
+import java.io.Serializable;
+
+@Entity(tableName = "post_table")
+public class PostUser implements Serializable {
     private String userId;
+    @PrimaryKey
+    @NonNull
     private String id;
     private String title;
     private String body;
