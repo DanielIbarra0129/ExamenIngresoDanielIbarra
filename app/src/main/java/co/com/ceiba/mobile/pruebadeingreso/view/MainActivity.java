@@ -10,7 +10,10 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -33,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements ViewUser, ViewPos
     private PresenterUser presenterUser;
     private UserAdapter userAdapter;
     private RecyclerView recyclerView;
-    private EditText etSearch;
+    private View viewEmpty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +49,15 @@ public class MainActivity extends AppCompatActivity implements ViewUser, ViewPos
 
         userAdapter = new UserAdapter(new ArrayList<>(), interfaceUser());
         recyclerView = findViewById(R.id.recyclerViewSearchResults);
+        LayoutInflater layoutInflater = LayoutInflater.from(this);
+        RelativeLayout contentLayout = findViewById(R.id.content);
+        viewEmpty = layoutInflater.inflate(R.layout.empty_view, contentLayout, false);
+        contentLayout.addView(viewEmpty);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setAdapter(userAdapter);
-        etSearch = findViewById(R.id.editTextSearch);
+        recyclerView.setVisibility(View.GONE);
+        viewEmpty.setVisibility(View.VISIBLE);
+        EditText etSearch = findViewById(R.id.editTextSearch);
         Tools.ocultarTeclado(getApplicationContext(), etSearch);
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -61,7 +70,13 @@ public class MainActivity extends AppCompatActivity implements ViewUser, ViewPos
 
             @Override
             public void afterTextChanged(Editable editable) {
-                userAdapter.filter(editable.toString());
+                if (userAdapter.filter(editable.toString())){
+                    recyclerView.setVisibility(View.VISIBLE);
+                    viewEmpty.setVisibility(View.GONE);
+                } else {
+                    recyclerView.setVisibility(View.GONE);
+                    viewEmpty.setVisibility(View.VISIBLE);
+                }
             }
         });
 
@@ -87,9 +102,18 @@ public class MainActivity extends AppCompatActivity implements ViewUser, ViewPos
 
     @Override
     public void showUser(List<User> userList) {
-        cancelDialogCargando();
         Log.d("Usuarios obtenidos", userList.toString());
-        userAdapter.setUserListOrigin(userList);
+        cancelDialogCargando();
+        if (userList.isEmpty()){
+            viewEmpty.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+        } else {
+            userAdapter.setUserListOrigin(userList);
+            viewEmpty.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+        }
+
+
     }
 
     @Override

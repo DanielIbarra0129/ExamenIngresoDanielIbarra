@@ -6,6 +6,10 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +31,7 @@ public class PostActivity extends AppCompatActivity implements ViewPost {
     private RecyclerView recyclerView;
     private PresenterPost presenterPost;
     private PostAdapter postAdapter;
+    private View viewEmpty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +48,14 @@ public class PostActivity extends AppCompatActivity implements ViewPost {
         presenterPost = new PresenterPostImpl(this, getApplicationContext());
         postAdapter = new PostAdapter(new ArrayList<>());
         recyclerView = findViewById(R.id.recyclerViewPostsResults);
+        ViewGroup viewParent = (ViewGroup) recyclerView.getParent();
+        LayoutInflater layoutInflater = LayoutInflater.from(this);
+        viewEmpty = layoutInflater.inflate(R.layout.empty_view, viewParent, false);
+        viewParent.addView(viewEmpty);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setAdapter(postAdapter);
+        recyclerView.setVisibility(View.GONE);
+        viewEmpty.setVisibility(View.VISIBLE);
         TextView tvName = findViewById(R.id.name);
         TextView tvPhone = findViewById(R.id.phone);
         TextView tvEmail = findViewById(R.id.email);
@@ -72,8 +83,17 @@ public class PostActivity extends AppCompatActivity implements ViewPost {
 
     @Override
     public void showPostByUser(List<PostUser> postUsers) {
+        postUsers.clear();
         cancelDialogCargando();
-        postAdapter.setPostList(postUsers);
+        if (postUsers.isEmpty()){
+            recyclerView.setVisibility(View.GONE);
+            viewEmpty.setVisibility(View.VISIBLE);
+        } else {
+            recyclerView.setVisibility(View.VISIBLE);
+            viewEmpty.setVisibility(View.GONE);
+            postAdapter.setPostList(postUsers);
+        }
+
     }
 
     @Override

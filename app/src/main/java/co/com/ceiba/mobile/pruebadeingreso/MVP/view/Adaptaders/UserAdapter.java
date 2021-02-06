@@ -49,13 +49,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
         notifyDataSetChanged();
     }
 
-    public void filter (String stringFiltered) {
+    public boolean filter (String stringFiltered) {
         stringFiltered = stringFiltered.toLowerCase();
         userListFiltered.clear();
         if (stringFiltered.length()==0){
             userListFiltered.addAll(userListOrigin);
             notifyDataSetChanged();
-            return;
+            if (userListFiltered.isEmpty()) return false;
+            return true;
         }
 
         for (User user: userListOrigin){
@@ -63,6 +64,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
         }
 
         notifyDataSetChanged();
+
+        if (userListFiltered.isEmpty()) return false;
+        return true;
     }
 
     public class UserHolder extends RecyclerView.ViewHolder {
