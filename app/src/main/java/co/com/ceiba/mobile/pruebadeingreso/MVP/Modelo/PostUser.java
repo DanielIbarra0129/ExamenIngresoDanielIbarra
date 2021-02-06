@@ -1,5 +1,7 @@
 package co.com.ceiba.mobile.pruebadeingreso.MVP.Modelo;
 
+import android.arch.persistence.room.Entity;
+
 public class PostUser {
     private String userId;
     private String id;

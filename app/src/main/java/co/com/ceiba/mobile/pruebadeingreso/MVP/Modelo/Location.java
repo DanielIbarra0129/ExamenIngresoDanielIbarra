@@ -1,9 +1,12 @@
 package co.com.ceiba.mobile.pruebadeingreso.MVP.Modelo;
 
+import android.arch.persistence.room.Entity;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
+@Entity(tableName = "location_table")
 public class Location implements Serializable {
     @SerializedName(value = "lat")
     private String latitude;
