@@ -12,21 +12,21 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import co.com.ceiba.mobile.pruebadeingreso.MVP.Modelo.PostUser;
-import co.com.ceiba.mobile.pruebadeingreso.MVP.Modelo.User;
-import co.com.ceiba.mobile.pruebadeingreso.MVP.Presenter.PresenterPost;
-import co.com.ceiba.mobile.pruebadeingreso.MVP.Presenter.PresenterPostImpl;
-import co.com.ceiba.mobile.pruebadeingreso.MVP.View.Adaptaders.PostAdapter;
-import co.com.ceiba.mobile.pruebadeingreso.MVP.View.ViewPost;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.PostUser;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.User;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.presenter.PresenterPost;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.presenter.PresenterPostImpl;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.view.Adaptaders.PostAdapter;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.view.ViewPost;
 import co.com.ceiba.mobile.pruebadeingreso.R;
 
 public class PostActivity extends AppCompatActivity implements ViewPost {
 
-    ProgressDialog progressDialog;
-    User user;
-    RecyclerView recyclerView;
-    PresenterPost presenterPost;
-    PostAdapter postAdapter;
+    private ProgressDialog progressDialog;
+    private User user;
+    private RecyclerView recyclerView;
+    private PresenterPost presenterPost;
+    private PostAdapter postAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,12 +58,6 @@ public class PostActivity extends AppCompatActivity implements ViewPost {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-
-    @Override
     public void getPostUserId(String userId) {
         showDialogCargando(R.string.informacion, R.string.consultando_posts);
         new Handler().postDelayed(() -> {
@@ -73,6 +67,7 @@ public class PostActivity extends AppCompatActivity implements ViewPost {
 
     @Override
     public void getAllPost() {
+        //No requerido
     }
 
     @Override

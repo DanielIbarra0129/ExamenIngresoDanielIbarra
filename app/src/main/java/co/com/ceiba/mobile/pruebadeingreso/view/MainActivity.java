@@ -16,28 +16,24 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import co.com.ceiba.mobile.pruebadeingreso.MVP.Modelo.PostUser;
-import co.com.ceiba.mobile.pruebadeingreso.MVP.Modelo.User;
-import co.com.ceiba.mobile.pruebadeingreso.MVP.Presenter.PresenterUser;
-import co.com.ceiba.mobile.pruebadeingreso.MVP.Presenter.PresenterUserImpl;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.PostUser;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.User;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.presenter.PresenterUser;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.presenter.PresenterUserImpl;
 import co.com.ceiba.mobile.pruebadeingreso.MVP.UserSelected;
-import co.com.ceiba.mobile.pruebadeingreso.MVP.View.Adaptaders.UserAdapter;
-import co.com.ceiba.mobile.pruebadeingreso.MVP.View.ViewPost;
-import co.com.ceiba.mobile.pruebadeingreso.MVP.View.ViewUser;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.view.Adaptaders.UserAdapter;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.view.ViewPost;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.view.ViewUser;
 import co.com.ceiba.mobile.pruebadeingreso.R;
 import co.com.ceiba.mobile.pruebadeingreso.Tools;
 
 public class MainActivity extends AppCompatActivity implements ViewUser, ViewPost {
 
-    //eliminar sgte variable
-    public static List<PostUser> POST_USER_ALL = new ArrayList<>();
-    public static List<PostUser> POST_USER_BY_ID = new ArrayList<>();
-
-    ProgressDialog progressDialog;
-    PresenterUser presenterUser;
-    UserAdapter userAdapter;
-    RecyclerView recyclerView;
-    EditText etSearch;
+    private ProgressDialog progressDialog;
+    private PresenterUser presenterUser;
+    private UserAdapter userAdapter;
+    private RecyclerView recyclerView;
+    private EditText etSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements ViewUser, ViewPos
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
 
-        userAdapter = new UserAdapter(new ArrayList<User>(), interfaceUser());
+        userAdapter = new UserAdapter(new ArrayList<>(), interfaceUser());
         recyclerView = findViewById(R.id.recyclerViewSearchResults);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setAdapter(userAdapter);
@@ -57,12 +53,10 @@ public class MainActivity extends AppCompatActivity implements ViewUser, ViewPos
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
@@ -85,17 +79,9 @@ public class MainActivity extends AppCompatActivity implements ViewUser, ViewPos
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-
-    @Override
     public void getUser() {
         showDialogCargando(R.string.informacion, R.string.consultando_usuarios);
-        new Handler().postDelayed(() -> {
-            presenterUser.getUser();
-        },1000);
+        new Handler().postDelayed(() -> presenterUser.getUser(),1000);
 
     }
 
@@ -143,6 +129,6 @@ public class MainActivity extends AppCompatActivity implements ViewUser, ViewPos
 
     @Override
     public void showPostByUser(List<PostUser> postUsers) {
-
+        //No requerido
     }
 }
