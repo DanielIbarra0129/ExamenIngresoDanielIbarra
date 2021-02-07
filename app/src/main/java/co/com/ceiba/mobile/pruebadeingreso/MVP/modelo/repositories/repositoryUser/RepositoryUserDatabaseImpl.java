@@ -6,7 +6,7 @@ import android.util.Log;
 import java.util.List;
 
 import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.DAO.database.databasePost.PostDB;
-import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.DAO.database.repositoryUser.UserDB;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.DAO.database.databaseUser.UserDB;
 import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.entitis.PostUser;
 import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.entitis.User;
 import co.com.ceiba.mobile.pruebadeingreso.MVP.presenter.PresenterUser;
