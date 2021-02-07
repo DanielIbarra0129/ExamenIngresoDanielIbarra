@@ -2,7 +2,6 @@ package co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.repositories.repositoryPo
 
 import android.content.Context;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.DAO.database.databasePost.PostDB;
@@ -14,7 +13,6 @@ public class RepositoryPostDBImpl implements RepositoryPost{
     PresenterPost presenterPost;
     Context context;
     PostDB postDB;
-    List<PostUser> list = new ArrayList<>();
 
     public RepositoryPostDBImpl(PresenterPost presenterPost, Context context) {
         this.presenterPost = presenterPost;
@@ -28,8 +26,7 @@ public class RepositoryPostDBImpl implements RepositoryPost{
 
     @Override
     public void getPostUserId(String userId) {
-        list = postDB.getPostById(userId);
-        presenterPost.showPostByUserIdDB((list!= null) ? list : new ArrayList<>());
+        presenterPost.showPostByUserIdDB(postDB.getPostById(userId));
     }
 
     @Override

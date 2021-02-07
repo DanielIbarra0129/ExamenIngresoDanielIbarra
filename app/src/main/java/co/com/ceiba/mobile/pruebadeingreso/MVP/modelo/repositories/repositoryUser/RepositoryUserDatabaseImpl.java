@@ -3,7 +3,6 @@ package co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.repositories.repositoryUs
 import android.content.Context;
 import android.util.Log;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.DAO.database.databasePost.PostDB;
@@ -17,9 +16,6 @@ public class RepositoryUserDatabaseImpl implements RepositoryUser {
     private PresenterUser presenterUser;
     private UserDB userDB;
     private PostDB postDB;
-    List<User> listUsers = new ArrayList<>();
-    List<PostUser> listPost = new ArrayList<>();
-
 
     public RepositoryUserDatabaseImpl(Context context, PresenterUser presenterUser) {
         this.presenterUser = presenterUser;
@@ -33,8 +29,10 @@ public class RepositoryUserDatabaseImpl implements RepositoryUser {
     @Override
     public void getUsers() {
         Log.d("RepositoryUserDBImpl","getUser");
-        listUsers = userDB.getUser();
-        presenterUser.showUserDB((listUsers!=null) ? listUsers : new ArrayList<>());
+
+        List<User> userList;
+        userList = userDB.getUser();
+        presenterUser.showUserDB(userList);
 
     }
 
@@ -53,8 +51,7 @@ public class RepositoryUserDatabaseImpl implements RepositoryUser {
 
     @Override
     public void getAllPost() {
-        listPost = postDB.getPost();
-        presenterUser.showAllPostDB((listPost!= null) ? listPost : new ArrayList<>());
+        presenterUser.showAllPostDB(postDB.getPost());
     }
 
     @Override
