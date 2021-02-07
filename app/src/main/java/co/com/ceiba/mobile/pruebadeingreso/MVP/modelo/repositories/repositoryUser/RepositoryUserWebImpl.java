@@ -1,4 +1,4 @@
-package co.com.ceiba.mobile.pruebadeingreso.MVP.modelo;
+package co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.repositories.repositoryUser;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -20,6 +20,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.entitis.PostUser;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.entitis.User;
 import co.com.ceiba.mobile.pruebadeingreso.MVP.presenter.PresenterUser;
 import co.com.ceiba.mobile.pruebadeingreso.R;
 import co.com.ceiba.mobile.pruebadeingreso.rest.Endpoints;

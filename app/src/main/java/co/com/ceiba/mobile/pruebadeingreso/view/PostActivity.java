@@ -9,15 +9,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.PostUser;
-import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.User;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.entitis.PostUser;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.entitis.User;
 import co.com.ceiba.mobile.pruebadeingreso.MVP.presenter.PresenterPost;
 import co.com.ceiba.mobile.pruebadeingreso.MVP.presenter.PresenterPostImpl;
 import co.com.ceiba.mobile.pruebadeingreso.MVP.view.Adaptaders.PostAdapter;
@@ -83,7 +82,6 @@ public class PostActivity extends AppCompatActivity implements ViewPost {
 
     @Override
     public void showPostByUser(List<PostUser> postUsers) {
-        postUsers.clear();
         cancelDialogCargando();
         if (postUsers.isEmpty()){
             recyclerView.setVisibility(View.GONE);

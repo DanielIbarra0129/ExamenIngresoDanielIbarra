@@ -1,4 +1,4 @@
-package co.com.ceiba.mobile.pruebadeingreso.MVP.modelo;
+package co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.entitis;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
@@ -7,6 +7,9 @@ import android.support.annotation.NonNull;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.entitis.Address;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.entitis.Company;
 
 @Entity(tableName = "user_table")
 public class User implements Serializable {

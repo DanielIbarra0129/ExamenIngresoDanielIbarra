@@ -2,7 +2,7 @@ package co.com.ceiba.mobile.pruebadeingreso.MVP.presenter;
 
 import java.util.List;
 
-import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.PostUser;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.entitis.PostUser;
 
 public interface PresenterPost extends PresenterGeneral{
     void getPostByUserId(String userId);

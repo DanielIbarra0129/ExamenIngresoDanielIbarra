@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.User;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.entitis.User;
 import co.com.ceiba.mobile.pruebadeingreso.MVP.UserSelected;
 import co.com.ceiba.mobile.pruebadeingreso.R;
 

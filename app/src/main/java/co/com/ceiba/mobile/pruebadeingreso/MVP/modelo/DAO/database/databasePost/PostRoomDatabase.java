@@ -1,11 +1,11 @@
-package co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.DAO.database;
+package co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.DAO.database.databasePost;
 
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.TypeConverters;
 
-import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.DAO.PostDao;
-import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.PostUser;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.DAO.database.Converters;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.entitis.PostUser;
 
 @Database(entities = {PostUser.class}, version = 1)
 @TypeConverters({Converters.class})

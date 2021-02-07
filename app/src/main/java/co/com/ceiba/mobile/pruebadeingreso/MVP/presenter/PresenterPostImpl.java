@@ -5,10 +5,10 @@ import android.util.Log;
 
 import java.util.List;
 
-import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.PostUser;
-import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.RepositoryPost;
-import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.RepositoryPostDBImpl;
-import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.RepositoryPostWebImpl;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.entitis.PostUser;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.repositories.repositoryPost.RepositoryPost;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.repositories.repositoryPost.RepositoryPostDBImpl;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.repositories.repositoryPost.RepositoryPostWebImpl;
 import co.com.ceiba.mobile.pruebadeingreso.MVP.view.ViewPost;
 
 public class PresenterPostImpl implements PresenterPost{

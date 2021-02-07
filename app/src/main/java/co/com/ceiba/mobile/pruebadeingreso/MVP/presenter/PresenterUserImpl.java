@@ -1,15 +1,14 @@
 package co.com.ceiba.mobile.pruebadeingreso.MVP.presenter;
 
 import android.content.Context;
-import android.util.Log;
 
 import java.util.List;
 
-import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.PostUser;
-import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.RepositoryUser;
-import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.RepositoryUserDatabaseImpl;
-import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.RepositoryUserWebImpl;
-import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.User;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.entitis.PostUser;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.repositories.repositoryUser.RepositoryUser;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.repositories.repositoryUser.RepositoryUserDatabaseImpl;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.repositories.repositoryUser.RepositoryUserWebImpl;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.entitis.User;
 import co.com.ceiba.mobile.pruebadeingreso.MVP.view.ViewUser;
 
 public class PresenterUserImpl implements PresenterUser {

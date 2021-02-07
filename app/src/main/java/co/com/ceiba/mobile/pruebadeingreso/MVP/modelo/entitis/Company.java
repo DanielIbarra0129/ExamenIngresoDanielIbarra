@@ -1,4 +1,4 @@
-package co.com.ceiba.mobile.pruebadeingreso.MVP.modelo;
+package co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.entitis;
 
 import android.arch.persistence.room.Entity;
 

@@ -19,8 +19,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.PostUser;
-import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.User;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.entitis.PostUser;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.entitis.User;
 import co.com.ceiba.mobile.pruebadeingreso.MVP.presenter.PresenterUser;
 import co.com.ceiba.mobile.pruebadeingreso.MVP.presenter.PresenterUserImpl;
 import co.com.ceiba.mobile.pruebadeingreso.MVP.UserSelected;
@@ -97,7 +97,6 @@ public class MainActivity extends AppCompatActivity implements ViewUser, ViewPos
     public void getUser() {
         showDialogCargando(R.string.informacion, R.string.consultando_usuarios);
         new Handler().postDelayed(() -> presenterUser.getUser(),1000);
-
     }
 
     @Override

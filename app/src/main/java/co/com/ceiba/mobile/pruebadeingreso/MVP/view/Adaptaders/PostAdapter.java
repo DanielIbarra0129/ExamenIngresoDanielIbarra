@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.PostUser;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.entitis.PostUser;
 import co.com.ceiba.mobile.pruebadeingreso.R;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.UserHolder> {

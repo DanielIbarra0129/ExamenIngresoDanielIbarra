@@ -1,10 +1,11 @@
-package co.com.ceiba.mobile.pruebadeingreso.MVP.modelo;
+package co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.repositories.repositoryPost;
 
 import android.content.Context;
 
 import java.util.List;
 
-import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.DAO.database.PostDB;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.DAO.database.databasePost.PostDB;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.entitis.PostUser;
 import co.com.ceiba.mobile.pruebadeingreso.MVP.presenter.PresenterPost;
 
 public class RepositoryPostDBImpl implements RepositoryPost{

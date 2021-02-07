@@ -1,12 +1,11 @@
-package co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.DAO.database;
+package co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.DAO.database.databasePost;
 
 import android.arch.persistence.room.Room;
 import android.content.Context;
 
 import java.util.List;
 
-import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.DAO.PostDao;
-import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.PostUser;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.entitis.PostUser;
 
 public class PostDB {
 

@@ -5,10 +5,10 @@ import android.arch.persistence.room.TypeConverter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.Address;
-import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.Company;
-import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.Location;
-import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.User;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.entitis.Address;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.entitis.Company;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.entitis.Location;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.entitis.User;
 
 public class Converters {
 

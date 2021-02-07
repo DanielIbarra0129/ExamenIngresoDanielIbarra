@@ -1,4 +1,4 @@
-package co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.DAO;
+package co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.DAO.database.databasePost;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
@@ -7,7 +7,7 @@ import android.arch.persistence.room.Query;
 
 import java.util.List;
 
-import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.PostUser;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.entitis.PostUser;
 
 @Dao
 public interface PostDao {
