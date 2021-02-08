@@ -3,10 +3,11 @@ package co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.repositories.repositoryUs
 import android.content.Context;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.DAO.database.databasePost.PostDB;
-import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.DAO.database.repositoryUser.UserDB;
+import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.DAO.database.databaseUser.UserDB;
 import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.entitis.PostUser;
 import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.entitis.User;
 import co.com.ceiba.mobile.pruebadeingreso.MVP.presenter.PresenterUser;
@@ -16,6 +17,10 @@ public class RepositoryUserDatabaseImpl implements RepositoryUser {
     private PresenterUser presenterUser;
     private UserDB userDB;
     private PostDB postDB;
+    List<User> listUsers = new ArrayList<>();
+
+    private List<PostUser> listPost = new ArrayList<>();
+
 
     public RepositoryUserDatabaseImpl(Context context, PresenterUser presenterUser) {
         this.presenterUser = presenterUser;
@@ -30,9 +35,8 @@ public class RepositoryUserDatabaseImpl implements RepositoryUser {
     public void getUsers() {
         Log.d("RepositoryUserDBImpl","getUser");
 
-        List<User> userList;
-        userList = userDB.getUser();
-        presenterUser.showUserDB(userList);
+        listUsers = userDB.getUser();
+        presenterUser.showUserDB((listUsers!=null) ? listUsers : new ArrayList<>());
 
     }
 
@@ -42,6 +46,11 @@ public class RepositoryUserDatabaseImpl implements RepositoryUser {
         for (int i=0; i<userList.size(); i++){
             userDB.setUser(userList.get(i));
         }
+    }
+
+    @Override
+    public List<User> getUserSaved() {
+        return listUsers;
     }
 
     @Override
@@ -64,5 +73,22 @@ public class RepositoryUserDatabaseImpl implements RepositoryUser {
     @Override
     public boolean verificarConexion() {
         return false;
+    }
+
+
+    public List<User> getListUsers() {
+        return listUsers;
+    }
+
+    public void setListUsers(List<User> listUsers) {
+        this.listUsers = listUsers;
+    }
+
+    public List<PostUser> getListPost() {
+        return listPost;
+    }
+
+    public void setListPost(List<PostUser> listPost) {
+        this.listPost = listPost;
     }
 }

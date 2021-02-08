@@ -30,6 +30,7 @@ public class RepositoryUserWebImpl implements RepositoryUser {
 
     Context context;
     PresenterUser presenterUser;
+    List<User> userList=new ArrayList<>();
 
     public RepositoryUserWebImpl(Context context, PresenterUser presenterUser) {
         this.context = context;
@@ -43,7 +44,7 @@ public class RepositoryUserWebImpl implements RepositoryUser {
             return;
         }
 
-        final List<User> userList=new ArrayList<>();
+
 
         RequestQueue queue = Volley.newRequestQueue(context);
         String url = Endpoints.URL_BASE+Endpoints.GET_USERS;
@@ -81,6 +82,11 @@ public class RepositoryUserWebImpl implements RepositoryUser {
 
     @Override
     public void setUser(List<User> userList) {
+    }
+
+    @Override
+    public List<User> getUserSaved() {
+        return userList;
     }
 
     @Override
