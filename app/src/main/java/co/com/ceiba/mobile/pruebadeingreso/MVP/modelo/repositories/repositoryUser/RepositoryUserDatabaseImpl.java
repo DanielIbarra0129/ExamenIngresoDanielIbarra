@@ -18,7 +18,9 @@ public class RepositoryUserDatabaseImpl implements RepositoryUser {
     private UserDB userDB;
     private PostDB postDB;
     List<User> listUsers = new ArrayList<>();
-    List<PostUser> listPost = new ArrayList<>();
+
+    private List<PostUser> listPost = new ArrayList<>();
+
 
     public RepositoryUserDatabaseImpl(Context context, PresenterUser presenterUser) {
         this.presenterUser = presenterUser;
@@ -47,6 +49,11 @@ public class RepositoryUserDatabaseImpl implements RepositoryUser {
     }
 
     @Override
+    public List<User> getUserSaved() {
+        return listUsers;
+    }
+
+    @Override
     public void getPostUserId(String userId) {
        postDB.getPostById(userId);
     }
@@ -66,5 +73,22 @@ public class RepositoryUserDatabaseImpl implements RepositoryUser {
     @Override
     public boolean verificarConexion() {
         return false;
+    }
+
+
+    public List<User> getListUsers() {
+        return listUsers;
+    }
+
+    public void setListUsers(List<User> listUsers) {
+        this.listUsers = listUsers;
+    }
+
+    public List<PostUser> getListPost() {
+        return listPost;
+    }
+
+    public void setListPost(List<PostUser> listPost) {
+        this.listPost = listPost;
     }
 }
