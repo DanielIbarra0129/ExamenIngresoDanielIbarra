@@ -49,26 +49,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
         notifyDataSetChanged();
     }
 
-    public boolean filter (String stringFiltered) {
-        stringFiltered = stringFiltered.toLowerCase();
-        userListFiltered.clear();
-        if (stringFiltered.length()==0){
-            userListFiltered.addAll(userListOrigin);
-            notifyDataSetChanged();
-            if (userListFiltered.isEmpty()) return false;
-            return true;
-        }
-
-        for (User user: userListOrigin){
-            if (user.getName().toLowerCase().contains(stringFiltered)) userListFiltered.add(user);
-        }
-
-        notifyDataSetChanged();
-
-        if (userListFiltered.isEmpty()) return false;
-        return true;
-    }
-
     public class UserHolder extends RecyclerView.ViewHolder {
 
         TextView tvName;

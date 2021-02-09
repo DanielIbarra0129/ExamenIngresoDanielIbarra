@@ -21,8 +21,6 @@ public class PresenterUserImpl implements PresenterUser {
         this.viewUser = viewUser;
         repositoryUserWebService = new RepositoryUserWebImpl(context, this);
         repositoryUserDatabase = new RepositoryUserDatabaseImpl(context, this);
-
-
     }
 
     @Override
@@ -77,6 +75,11 @@ public class PresenterUserImpl implements PresenterUser {
     @Override
     public void guardarInfoDatabaseUser(List<User> userList) {
         repositoryUserDatabase.setUser(userList);
+    }
+
+    @Override
+    public void userFiltered(String stringFiltered) {
+        viewUser.showUser(repositoryUserDatabase.userFiltered(stringFiltered));
     }
 
     @Override

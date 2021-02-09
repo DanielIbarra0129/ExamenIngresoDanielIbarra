@@ -36,12 +36,14 @@ public class RepositoryUserDatabaseImpl implements RepositoryUser {
         Log.d("RepositoryUserDBImpl","getUser");
 
         listUsers = userDB.getUser();
-        presenterUser.showUserDB((listUsers!=null) ? listUsers : new ArrayList<>());
+        if (listUsers== null) listUsers = new ArrayList<>();
+        presenterUser.showUserDB(listUsers);
 
     }
 
     @Override
     public void setUser(List<User> userList) {
+        this.listUsers = userList;
         Log.d("RepositoryUserDBImpl","setUser");
         for (int i=0; i<userList.size(); i++){
             userDB.setUser(userList.get(i));
@@ -51,6 +53,23 @@ public class RepositoryUserDatabaseImpl implements RepositoryUser {
     @Override
     public List<User> getUserSaved() {
         return listUsers;
+    }
+
+    @Override
+    public List<User> userFiltered(String stringFiltered) {
+        stringFiltered = stringFiltered.toLowerCase();
+        List<User> userListFiltered = new ArrayList<>();
+        if (stringFiltered.length()==0){
+            userListFiltered.addAll(listUsers);
+            if (userListFiltered.isEmpty());
+            return userListFiltered;
+        }
+
+        for (User user: listUsers){
+            if (user.getName().toLowerCase().contains(stringFiltered)) userListFiltered.add(user);
+        }
+
+        return userListFiltered;
     }
 
     @Override

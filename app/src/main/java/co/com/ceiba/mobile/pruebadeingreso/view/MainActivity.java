@@ -70,13 +70,7 @@ public class MainActivity extends AppCompatActivity implements ViewUser, ViewPos
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (userAdapter.filter(editable.toString())){
-                    recyclerView.setVisibility(View.VISIBLE);
-                    viewEmpty.setVisibility(View.GONE);
-                } else {
-                    recyclerView.setVisibility(View.GONE);
-                    viewEmpty.setVisibility(View.VISIBLE);
-                }
+                presenterUser.userFiltered(editable.toString());
             }
         });
 

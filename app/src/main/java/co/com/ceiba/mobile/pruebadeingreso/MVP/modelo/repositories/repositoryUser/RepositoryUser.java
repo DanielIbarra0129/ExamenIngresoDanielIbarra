@@ -1,6 +1,5 @@
 package co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.repositories.repositoryUser;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import co.com.ceiba.mobile.pruebadeingreso.MVP.modelo.entitis.User;
@@ -14,5 +13,7 @@ public interface RepositoryUser extends RepositoryPost, RepositoryGeneral {
     void setUser(List<User> userList);
 
     List<User> getUserSaved ();
+
+    List<User> userFiltered(String stringFiltered);
 
 }

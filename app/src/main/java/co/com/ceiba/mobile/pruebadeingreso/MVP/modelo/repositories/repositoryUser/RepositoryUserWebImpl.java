@@ -90,6 +90,11 @@ public class RepositoryUserWebImpl implements RepositoryUser {
     }
 
     @Override
+    public List<User> userFiltered(String stringFiltered) {
+        return null;
+    }
+
+    @Override
     public boolean verificarConexion() {
         ConnectivityManager con = (ConnectivityManager) context.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = con.getActiveNetworkInfo();

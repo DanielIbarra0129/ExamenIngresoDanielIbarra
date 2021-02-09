@@ -12,4 +12,6 @@ public interface PresenterUser extends PresenterGeneral, PresenterPost{
     void showUserWeb(List<User> listUser);
 
     void guardarInfoDatabaseUser(List<User> userList);
+
+    void userFiltered (String stringFiltered);
 }
